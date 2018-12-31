@@ -1,5 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+using DocDocos;
 namespace DocDocosTestNuget
 {
     [TestClass]
@@ -8,6 +8,8 @@ namespace DocDocosTestNuget
         [TestMethod]
         public void TestMethod1()
         {
+            DocDocosDA hemerayeir = new DocDocosDA();
+
         }
     }
 }
