@@ -11,7 +11,9 @@ namespace NET45
         [TestMethod]
         public void GenererOK()
         {
-            DocDocosDA generateur = new DocDocosDA();
+            DocDocosDA generateur = 
+                new DocDocosDA();
+
 
         }
     }

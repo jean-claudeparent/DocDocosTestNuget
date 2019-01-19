@@ -1,0 +1,232 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DocDocos</name>
+    </assembly>
+    <members>
+        <member name="T:DocDocos.DocDocosDA">
+            <summary>
+            Classe de logique d'affaire de MokaDocos.
+            </summary>
+        </member>
+        <member name="M:DocDocos.DocDocosDA.#ctor(System.String)">
+            <summary>
+            Constructeur qui peut accepter
+            le nom du fichier degabarit
+            en argument
+            </summary>
+            <param name="FichierGabaritOptionnel">Chemin et nom de fichier pour utiliser un gabarit optionnel pour la génération du site</param>
+        </member>
+        <member name="F:DocDocos.DocDocosDA.RaccourciFichier">
+            <summary>
+            Ce nombre remplacera une partie du nom
+            d'entiteDocument pour donner des noms de fichiers 
+            pluscourts.
+            </summary>
+        </member>
+        <member name="F:DocDocos.DocDocosDA.FichierXMLDoc">
+            <summary>
+            Chemin et nom du fichier de documentation xml à traiter
+            </summary>
+        </member>
+        <member name="F:DocDocos.DocDocosDA.RepertoireSortie">
+            <summary>
+            Répertoire où sera créé le site web.
+            </summary>
+        </member>
+        <member name="F:DocDocos.DocDocosDA.Gabarit">
+            <summary>
+            Contenu du gabarit qui sera utilisé pour générer les pages du site.
+            </summary>
+        </member>
+        <member name="M:DocDocos.DocDocosDA.GenererHTML">
+            <summary>
+            Charge le document XML de
+            documentation généré par Visual Studio
+            et génère le site web de documentation.
+            </summary>
+        </member>
+        <member name="M:DocDocos.DocDocosDA.Publier(System.String,System.String,System.String)">
+            <summary>
+            Construit une pageweb
+            en inséran le contenu et le titre depage
+            dans le gabarit HTML et écrite le
+            résultat dans le fichier  
+            de sortie.
+            </summary>
+            <param name="Fichier">Chemin complet du fichierhtml à écrire</param>
+            <param name="Titre">Titre de la page web</param>
+            <param name="Contenu">Contenu HTML à insérer dans la page</param>
+        </member>
+        <member name="M:DocDocos.DocDocosDA.TraiterNoeud(System.Xml.Linq.XElement)">
+            <summary>
+            Construit une EntiteDocument à
+            partir d'un noeud xml
+            </summary>
+            <param name="Noeud">Noeud contenant l'information</param>
+            <returns>L'entité document construite</returns>
+        </member>
+        <member name="M:DocDocos.DocDocosDA.TraiterDictionnaire">
+             <summary>
+             Insere l'information de contenu
+             dans chaque entree du dictionnaire
+             </summary>
+            Répartit lMinformation entre les noeuds
+            parent et enfants (selon les nibeaux)
+        </member>
+        <member name="M:DocDocos.DocDocosDA.TraiterItem(DocDocos.EntiteDocument@)">
+            <summary>
+            Crée le html et le mnom de fichier
+            </summary>
+            <param name="ItemATraiter"></param>
+        </member>
+        <member name="M:DocDocos.DocDocosDA.AjouterToutDict">
+            <summary>
+            Ajouter chaque membre du fichier
+            xml dans le dictionnaire.
+            </summary>
+        </member>
+        <member name="T:DocDocos.JCAMiniCore">
+            <summary>
+            Le mini core contient des fonctions
+            qui ont juste des dépendances
+            avec le framework .net
+            </summary>
+        </member>
+        <member name="M:DocDocos.JCAMiniCore.TypeEncodage(System.String)">
+            <summary>
+            Retourne l'encodage d'un fichier texte
+            en se basant sur le BOM (octets d'identification au début du fichier)
+            Si le BOM est manquant ou inconnu ASCII est assumé
+            </summary>
+            <param name="Fichier">Mom du fichier pour lequel il faut déterminer l'encodage</param>
+            <returns>Type d'encodage</returns>
+        </member>
+        <member name="M:DocDocos.JCAMiniCore.EffaceFichier(System.String)">
+            <summary>
+            Efface un fichier s'il existe
+            </summary>
+            <param name="NomFichier">Nom du fichier à efface avec son chemin</param>
+        </member>
+        <member name="M:DocDocos.JCAMiniCore.NomValide(System.String)">
+            <summary>
+            Remplace les catactères invalides dans
+            un nom de fichier par des soulignées
+            Exemple "Fichier:01" deviendra "Fichier_-1"
+            </summary>
+            <param name="NomFichier">Nom du fichier à rendre conforme</param>
+            <returns>Nom compatible avec le système de fichier de windows</returns>
+        </member>
+        <member name="T:DocDocos.HTMLHelper">
+            <summary>
+            Contient le squelette
+            du HTML 
+            </summary>
+        </member>
+        <member name="M:DocDocos.HTMLHelper.Variables">
+            <summary>
+            Liste de toutes les bariables de 
+            substitution utilisées
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DocDocos.HTMLHelper.ConstruireHTML(System.String,System.String,System.String)">
+            <summary>
+            Substitue des variables
+            du html par les valeurs
+            </summary>
+            <param name="HTNLGlobal">HTML qui contient les variables</param>
+            <param name="IdentifiantVariable">Identifiant de la variables comme par exemple {{Rangee}}</param>
+            <param name="ContenuVariables">Valeur de la variable avec le HTML déjà encodé</param>
+            <returns>HTML avec les variables substituée par leur valeurs</returns>
+        </member>
+        <member name="M:DocDocos.HTMLHelper.MenageHTNL(System.String)">
+            <summary>
+            Enlève les identifiants de variables
+            restants dans le HTML
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DocDocos.HTMLHelper.GabaritInterne">
+            <summary>
+            Retourne le gabarit affichant
+            l'infomration dans lapage.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DocDocos.HTMLHelper.ConstruireLien(System.String,System.String)">
+            <summary>
+            Crée un hiperlien
+            en html
+            </summary>
+            <param name="URL"></param>
+            <param name="Nom"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DocDocos.HTMLHelper.GabaritRangee">
+            <summary>
+            Retourne legabatit pour
+            le traitement d'une ligne de tableau
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DocDocos.HTMLHelper.GabaritTableau">
+            <summary>
+            Retourne le html définissant une
+            table HTML avec une zone pour
+            insérer l'information du tableau
+            </summary>
+            <returns>HTML représentant le début et la fin d'une table html</returns>
+        </member>
+        <member name="M:DocDocos.HTMLHelper.GabaritDemo">
+            <summary>
+            Retourne un gabarit de démonstration
+            utilisé au casoù le fichier de 
+            gabatir serait introuvable
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DocDocos.HTMLHelper.EncodeHTNL(System.String)">
+            <summary>
+            Encode en équivalent html les caracttères
+            probématiques dans l'affichage d'un document html
+            </summary>
+            <param name="HTNL"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DocDocos.HTMLHelper.CreerRangee(System.String,System.String,System.String)">
+            <summary>
+            Crée un bloc de HTML
+            représentant une rangée de données
+            d'un tableau
+            </summary>
+            <param name="Cellule1">Valeur de la première cullule de la rangée. Elle doit être encodée en HTML si besoin est.</param>
+            <param name="Cellule2"></param>
+            <param name="Cellule2"></param>
+            <returns>HTML créé</returns>
+        </member>
+        <member name="M:DocDocos.IO.AjouterCheminFichier(System.String,System.String)">
+            <summary>
+            Ajoute un autre niveau à un path
+            de fichier
+            </summary>
+            <param name="Chemin"></param>
+            <param name="Ajout"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DocDocos.Str.DernierC(System.String)">
+            <summary>
+            Retourne le dernier caractère d'une chaîne
+            </summary>
+            <param name="Chaine"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DocDocos.Str.Debut(System.String,System.String)">
+            <summary>
+            Retourne le début de la chaîne de 
+            caractère qui sont acvant un certains caractère
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
